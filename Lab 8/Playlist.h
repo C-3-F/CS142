@@ -16,7 +16,9 @@ public:
     Playlist();
     Playlist(string name);
     void AddSong(Song* song);
+    void RemoveSong(int index);
     void PlayPlaylist();
+    vector<Song*> GetSongs();
     string GetName();
 
 };

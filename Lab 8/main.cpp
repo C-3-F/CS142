@@ -4,7 +4,6 @@
 // You could put 'using namespace std;' at the top of your code and not need 'std::' in front of these words,
 // but many people consider it better practice to not have 'using namespace std;'
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,119 +12,161 @@
 #include "Song.h"
 #include "Playlist.h"
 
-
 // TODO: clean up memory when it is no longer used
 //  (you need to find the appropriate places in the code to do this)
 
-std::string GetUserString(const std::string& prompt);
-int GetUserInt(const std::string& prompt);
-void printLibrary(vector<Song*> library);
-void printSongIndexes(vector<Song*> library);
-void printSongsInPlaylist(Playlist* playlist);
-void printPlaylists(vector<Playlist*> playlists);
+std::string GetUserString(const std::string &prompt);
+int GetUserInt(const std::string &prompt);
+void printLibrary(vector<Song *> library);
+void printSongIndexes(vector<Song *> library);
+void printSongsInPlaylist(Playlist *playlist);
+void printPlaylists(vector<Playlist *> playlists);
 
-
-int main() {
-   std::cout << "Welcome to the Firstline Player!  Enter options to see menu options." << std::endl << std::endl;
+int main()
+{
+   std::cout << "Welcome to the Firstline Player!  Enter options to see menu options." << std::endl
+             << std::endl;
 
    //TODO: Create vectors to hold the songs and playlists
-   vector<Song*> allSongs;
-   vector<Playlist*> allPlaylists;
+   vector<Song *> allSongs;
+   vector<Playlist *> allPlaylists;
 
    std::string userMenuChoice = "none";
    bool continueMenuLoop = true;
 
-   while (continueMenuLoop) {
+   while (continueMenuLoop)
+   {
       userMenuChoice = GetUserString("Enter your selection now: ");
 
-      if (userMenuChoice == "add") {
+      if (userMenuChoice == "add")
+      {
          const std::string DONE_KEYWORD = "DONE";
          std::cout << "Enter songs' names and first lines"
-                  << " (type \"" << DONE_KEYWORD << "\" when done):" << std::endl;
+                   << " (type \"" << DONE_KEYWORD << "\" when done):" << std::endl;
 
          std::string songName = "none";
          std::string firstLine = "none";
 
          songName = GetUserString("Song Name: ");
-         while (songName != DONE_KEYWORD) {
+         while (songName != DONE_KEYWORD)
+         {
             firstLine = GetUserString("Song's first line: ");
 
             //TODO: Create a Song using `songName` and `firstLine` and add it to allSongs
-            Song* newSong = new Song(songName, firstLine);
+            Song *newSong = new Song(songName, firstLine);
             allSongs.push_back(newSong);
 
             songName = GetUserString("Song Name: ");
          }
       }
-      else if (userMenuChoice == "list") {
-          printLibrary(allSongs);
+      else if (userMenuChoice == "list")
+      {
+         printLibrary(allSongs);
       }
-      else if (userMenuChoice == "addp") {
+      else if (userMenuChoice == "addp")
+      {
          string playlistName = GetUserString("Playlist Name: ");
-         Playlist* newPlaylist = new Playlist(playlistName);
+         Playlist *newPlaylist = new Playlist(playlistName);
          allPlaylists.push_back(newPlaylist);
       }
-      else if (userMenuChoice == "addsp") {
-          printPlaylists(allPlaylists);
-          int playlistIndex = GetUserInt("Pick a playlist index number: ");
-          printSongIndexes(allSongs);
-          int songIndex = GetUserInt("Pick a song index number: ");
-          allPlaylists.at(playlistIndex)->AddSong(allSongs.at(songIndex));
+      else if (userMenuChoice == "addsp")
+      {
+         printPlaylists(allPlaylists);
+         int playlistIndex = GetUserInt("Pick a playlist index number: ");
+         printSongIndexes(allSongs);
+         int songIndex = GetUserInt("Pick a song index number: ");
+         allPlaylists.at(playlistIndex)->AddSong(allSongs.at(songIndex));
       }
-      else if (userMenuChoice == "listp") {
-          printPlaylists(allPlaylists);
+      else if (userMenuChoice == "listp")
+      {
+         printPlaylists(allPlaylists);
       }
-      else if (userMenuChoice == "play") {
+      else if (userMenuChoice == "play")
+      {
+         printPlaylists(allPlaylists);
+         int playlist = GetUserInt("Pick a playlist index number: ");
+         cout << "Playing songs from playlist: " << allPlaylists.at(playlist)->GetName();
+         allPlaylists.at(playlist)->PlayPlaylist();
+      }
+      else if (userMenuChoice == "remp")
+      {
+         printPlaylists(allPlaylists);
+         int playlist = GetUserInt("Pick a playlist index number to remove: ");
+         delete allPlaylists.at(playlist);
+         allPlaylists.erase(allPlaylists.begin() + playlist);
+      }
+      else if (userMenuChoice == "remsp")
+      {
          //TODO: Implement this menu option
-          printPlaylists(allPlaylists);
+         printPlaylists(allPlaylists);
+         int playlist = GetUserInt("Pick a playlist index number: ");
+         printSongsInPlaylist(allPlaylists.at(playlist));
+         int songIndex = GetUserInt("Pick a song index number to remove: ");
+         allPlaylists.at(playlist)->RemoveSong(songIndex);
+      }
+      else if (userMenuChoice == "remsl")
+      {
+         //TODO: Implement this menu option
+         printLibrary(allSongs);
+         int songIndex = GetUserInt("ick a song index number to remove: ");
+         Song *song = allSongs.at(songIndex);
 
+         for (int i = 0; i < allPlaylists.size(); i++)
+         {
+            for (int j = 0; j < allPlaylists.at(i)->GetSongs().size(); j++)
+            {
+               if (allPlaylists.at(i)->GetSongs().at(j) == song)
+               {
+                  allPlaylists.at(i)->GetSongs().erase(allPlaylists.at(i)->GetSongs().begin() + j);
+               }
+            }
+         }
+
+         delete song;
+         allSongs.erase(allSongs.begin() + songIndex);
       }
-      else if (userMenuChoice == "remp") {
-         //TODO: Implement this menu option
-      }
-      else if (userMenuChoice == "remsp") {
-         //TODO: Implement this menu option
-      }
-      else if (userMenuChoice == "remsl") {
-         //TODO: Implement this menu option
-      }
-      else if (userMenuChoice == "options") {
+      else if (userMenuChoice == "options")
+      {
          std::cout << "add      Adds a list of songs to the library" << std::endl
-            << "list     Lists all the songs in the library" << std::endl
-            << "addp     Adds a new playlist" << std::endl
-            << "addsp    Adds a song to a playlist" << std::endl
-            << "listp    Lists all the playlists" << std::endl
-            << "play     Plays a playlist" << std::endl
-            << "remp     Removes a playlist" << std::endl
-            << "remsp    Removes a song from a playlist" << std::endl
-            << "remsl    Removes a song from the library (and all playlists)" << std::endl
-            << "options  Prints this options menu" << std::endl
-            << "quit     Quits the program" << std::endl << std::endl;
+                   << "list     Lists all the songs in the library" << std::endl
+                   << "addp     Adds a new playlist" << std::endl
+                   << "addsp    Adds a song to a playlist" << std::endl
+                   << "listp    Lists all the playlists" << std::endl
+                   << "play     Plays a playlist" << std::endl
+                   << "remp     Removes a playlist" << std::endl
+                   << "remsp    Removes a song from a playlist" << std::endl
+                   << "remsl    Removes a song from the library (and all playlists)" << std::endl
+                   << "options  Prints this options menu" << std::endl
+                   << "quit     Quits the program" << std::endl
+                   << std::endl;
       }
-      else if (userMenuChoice == "quit") {
+      else if (userMenuChoice == "quit")
+      {
          std::cout << "Goodbye!" << std::endl;
          continueMenuLoop = false;
       }
-      else {
+      else
+      {
          std::cout << "add      Adds a list of songs to the library" << std::endl
-            << "list     Lists all the songs in the library" << std::endl
-            << "addp     Adds a new playlist" << std::endl
-            << "addsp    Adds a song to a playlist" << std::endl
-            << "listp    Lists all the playlists" << std::endl
-            << "play     Plays a playlist" << std::endl
-            << "remp     Removes a playlist" << std::endl
-            << "remsp    Removes a song from a playlist" << std::endl
-            << "remsl    Removes a song from the library (and all playlists)" << std::endl
-            << "options  Prints this options menu" << std::endl
-            << "quit     Quits the program" << std::endl << std::endl;
+                   << "list     Lists all the songs in the library" << std::endl
+                   << "addp     Adds a new playlist" << std::endl
+                   << "addsp    Adds a song to a playlist" << std::endl
+                   << "listp    Lists all the playlists" << std::endl
+                   << "play     Plays a playlist" << std::endl
+                   << "remp     Removes a playlist" << std::endl
+                   << "remsp    Removes a song from a playlist" << std::endl
+                   << "remsl    Removes a song from the library (and all playlists)" << std::endl
+                   << "options  Prints this options menu" << std::endl
+                   << "quit     Quits the program" << std::endl
+                   << std::endl;
       }
    }
 
    return 0;
 }
 
-
-std::string GetUserString(const std::string& prompt) {
+std::string GetUserString(const std::string &prompt)
+{
    std::string userAnswer = "none";
 
    std::cout << prompt;
@@ -133,7 +174,8 @@ std::string GetUserString(const std::string& prompt) {
    std::cout << std::endl;
    return userAnswer;
 }
-int GetUserInt(const std::string& prompt) {
+int GetUserInt(const std::string &prompt)
+{
    int userAnswer = 0;
 
    std::cout << prompt;
@@ -143,25 +185,34 @@ int GetUserInt(const std::string& prompt) {
    return userAnswer;
 }
 
-void printLibrary(vector<Song*> library) {
-    for (int i = 0; i < library.size(); i++) {
-        cout << library.at(i)->GetName() << ": \"" << library.at(i)->GetFirstLine() << "\", " << library.at(i)->GetCount() << " play(s)." << endl;
-    }
+void printLibrary(vector<Song *> library)
+{
+   for (int i = 0; i < library.size(); i++)
+   {
+      cout << library.at(i)->GetName() << ": \"" << library.at(i)->GetFirstLine() << "\", " << library.at(i)->GetCount() << " play(s)." << endl;
+   }
 }
 
-void printSongIndexes(vector<Song *> library) {
-    for (int i = 0; i < library.size(); i++) {
-        cout << i << ": " << library.at(i)->GetName() << endl;
-    }
+void printSongIndexes(vector<Song *> library)
+{
+   for (int i = 0; i < library.size(); i++)
+   {
+      cout << i << ": " << library.at(i)->GetName() << endl;
+   }
 }
 
-void printSongsInPlaylist(Playlist *playlist) {
-
+void printSongsInPlaylist(Playlist *playlist)
+{
+   for (int i = 0; i < playlist->GetSongs().size(); i++)
+   {
+      cout << i << ": " << playlist->GetSongs().at(i)->GetName() << endl;
+   }
 }
 
-void printPlaylists(vector<Playlist*> playlists) {
-    for (int i = 0; i < playlists.size(); i++) {
-        cout << i << ": " << playlists.at(i)->GetName() << endl;
-    }
+void printPlaylists(vector<Playlist *> playlists)
+{
+   for (int i = 0; i < playlists.size(); i++)
+   {
+      cout << i << ": " << playlists.at(i)->GetName() << endl;
+   }
 }
-

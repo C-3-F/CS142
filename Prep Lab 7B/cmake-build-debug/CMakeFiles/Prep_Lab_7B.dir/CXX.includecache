@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/c3far/Documents/Code/CS142/Prep Lab 7B/Contacts.h
+string
+-
+iostream
+-
+
+C:/Users/c3far/Documents/Code/CS142/Prep Lab 7B/main.cpp
+iostream
+-
+Contacts.h
+C:/Users/c3far/Documents/Code/CS142/Prep Lab 7B/Contacts.h
+

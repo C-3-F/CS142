@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/c3far/Documents/Code/CS142/Testing/cmake-build-debug/CMakeFiles/Testing.dir/embed.manifest"

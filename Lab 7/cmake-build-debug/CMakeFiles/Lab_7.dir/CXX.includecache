@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/c3far/Documents/Code/CS142/Lab 7/ItemToPurchase.h
+string
+-
+iostream
+-
+iomanip
+-
+
+C:/Users/c3far/Documents/Code/CS142/Lab 7/ShoppingCart.cpp
+ShoppingCart.h
+C:/Users/c3far/Documents/Code/CS142/Lab 7/ShoppingCart.h
+
+C:/Users/c3far/Documents/Code/CS142/Lab 7/ShoppingCart.h
+string
+-
+vector
+-
+ItemToPurchase.h
+C:/Users/c3far/Documents/Code/CS142/Lab 7/ItemToPurchase.h
+

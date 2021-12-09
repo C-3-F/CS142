@@ -1,0 +1,3 @@
+C:/Users/c3far/Documents/Code/CS142/Testing/cmake-build-debug/CMakeFiles/Testing.dir
+C:/Users/c3far/Documents/Code/CS142/Testing/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/c3far/Documents/Code/CS142/Testing/cmake-build-debug/CMakeFiles/rebuild_cache.dir

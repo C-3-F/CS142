@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/c3far/Documents/Code/CS142/Lab 8/Playlist.h
+Song.h
+C:/Users/c3far/Documents/Code/CS142/Lab 8/Song.h
+vector
+-
+
+C:/Users/c3far/Documents/Code/CS142/Lab 8/Song.h
+string
+-
+iostream
+-
+
+C:/Users/c3far/Documents/Code/CS142/Lab 8/main.cpp
+iostream
+-
+string
+-
+vector
+-
+Song.h
+C:/Users/c3far/Documents/Code/CS142/Lab 8/Song.h
+Playlist.h
+C:/Users/c3far/Documents/Code/CS142/Lab 8/Playlist.h
+

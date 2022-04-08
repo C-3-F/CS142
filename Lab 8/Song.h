@@ -18,10 +18,15 @@ private:
     int timesPlayed;
 public:
     Song();
+
     Song(string title, string firstLine);
+
     string GetName();
+
     string GetFirstLine();
+
     int GetCount();
+
     void increaseCount();
 
 

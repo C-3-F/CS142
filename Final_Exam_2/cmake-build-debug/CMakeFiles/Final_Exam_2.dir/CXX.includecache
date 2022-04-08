@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/c3far/Documents/Code/CS142/Final_Exam_2/main.cpp
+iostream
+-
+math.h
+C:/Users/c3far/Documents/Code/CS142/Final_Exam_2/math.h
+iomanip
+-
+

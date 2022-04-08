@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/c3far/Documents/Code/CS142/Final_Exam/Toy.h
+string
+-
+
+C:/Users/c3far/Documents/Code/CS142/Final_Exam/main.cpp
+iostream
+-
+Toy.h
+C:/Users/c3far/Documents/Code/CS142/Final_Exam/Toy.h
+

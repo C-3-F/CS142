@@ -11,14 +11,20 @@
 class Playlist {
 private:
     string playlistName;
-    vector<Song*> songs;
+    vector<Song *> songs;
 public:
     Playlist();
+
     Playlist(string name);
-    void AddSong(Song* song);
+
+    void AddSong(Song *song);
+
     void RemoveSong(int index);
+
     void PlayPlaylist();
-    vector<Song*> GetSongs();
+
+    vector<Song *> GetSongs();
+
     string GetName();
 
 };
